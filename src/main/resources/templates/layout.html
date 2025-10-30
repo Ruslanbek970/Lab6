@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRM Система</title>
+    <link rel="stylesheet" th:href="@{/css/styleee.css}">
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <div class="navbar-nav">
+            <a class="nav-link" th:href="@{/}">CRM Система</a>
+            <a class="nav-link" th:href="@{/}">Все заявки</a>
+            <a class="nav-link" th:href="@{/requests/pending}">Новые заявки</a>
+            <a class="nav-link" th:href="@{/requests/processed}">Обработанные заявки</a>
+            <a class="nav-link" th:href="@{/requests/new}">Добавить заявку</a>
+        </div>
+    </div>
+</nav>
+<div class="container" layout:fragment="content"></div>
+</body>
+</html>

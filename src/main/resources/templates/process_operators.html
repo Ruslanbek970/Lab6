@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout.html">
+<div layout:fragment="content">
+    <div class="card-like">
+        <h3 class="form-title">Назначить операторов</h3>
+        <div class="form-group">
+            <label class="form-label">Заявка от:</label>
+            <div class="form-input readonly" th:text="${req.userName}">Имя</div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Курс:</label>
+            <div class="form-input readonly">
+                <span th:if="${req.course != null}" th:text="${req.course.name + ' — ' + req.course.price + '₸'}">Курс</span>
+                <span th:unless="${req.course != null}">Не выбран</span>
+            </div>
+        </div>
+        <form th:action="@{'/requests/' + ${req.id} + '/process'}" method="post">
+            <table class="operators-table" role="table">
+                <thead>
+                <tr>
+                    <th class="col-check">Выбрать</th>
+                    <th class="col-name">Имя</th>
+                    <th class="col-surname">Фамилия</th>
+                    <th class="col-dept">Департамент</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="op : ${operators}">
+                    <td><input type="checkbox" name="operatorIds" th:value="${op.id}" class="op-checkbox"></td>
+                    <td th:text="${op.name}">Имя</td>
+                    <td th:text="${op.surname}">Фамилия</td>
+                    <td th:text="${op.department}">Департамент</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="actions-row">
+                <button type="submit" class="btn btn-primary">Назначить</button>
+                <a th:href="@{'/requests/' + ${req.id}}" class="btn btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+</html>
